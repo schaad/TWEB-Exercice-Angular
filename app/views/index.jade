@@ -1,0 +1,14 @@
+doctype html
+	head
+		title = "Super titre"
+	
+		script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.min.js")
+		script(src="js/app.js")
+
+	body(ng-view)
+
+		h1= title
+		p Welcome to #{title}
+
+		div(ng-controller="firstController")
+			{{name}}
