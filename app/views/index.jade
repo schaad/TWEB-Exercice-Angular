@@ -3,6 +3,8 @@ head
 	title="Super titre"
 
 	script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.min.js")
+	script(src="js/Chart.js/Chart.js")
+	script(src="js/angularChart/angular-chart.js")
 	script(src="js/app.js")
 
 body(ng-app="scopeExample")
@@ -12,3 +14,5 @@ body(ng-app="scopeExample")
 
 	div(ng-controller="firstController")
 		{{ name }}
+
+		canvas(id="doughnut", class="chart chart-doughnut", chart-data="data", chart-labels="labels") 
