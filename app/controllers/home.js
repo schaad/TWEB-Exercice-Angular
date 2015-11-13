@@ -9,7 +9,8 @@ module.exports = function (app) {
 router.get('/', function (req, res, next) {
   var articles = [new Article(), new Article()];
     res.render('index', {
-      title: 'Generator-Express MVC',
+      title: 'Exervice Angular - TWEB',
+	  author: 'Valentin Schaad',
       articles: articles
     });
 });

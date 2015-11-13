@@ -2,6 +2,10 @@ doctype html
 head
 	title="Super titre"
 
+	link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet")
+
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
+	script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
 	script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.min.js")
 	script(src="js/Chart.js/Chart.js")
 	script(src="js/angularChart/angular-chart.js")
@@ -9,10 +13,13 @@ head
 
 body(ng-app="scopeExample")
 
-	h1= title
-	p Welcome to #{title}
+	div(class="container")
+		h1= title
+		p #{author}
 
-	div(ng-controller="firstController")
-		{{ name }}
+		div(class="row", ng-controller="firstController")
+			div(class="col-md-6")
+				{{ name }}
 
-		canvas(id="doughnut", class="chart chart-doughnut", chart-data="data", chart-labels="labels") 
+
+				canvas(id="doughnut", class="chart chart-doughnut", chart-data="data", chart-labels="labels") 
