@@ -32,12 +32,14 @@ html
 					a(class="navbar-brand", href="#")
 						b="TWEB - Exercice AngularJS"
 
-				div(class="navbar-collapse collapse")
+				div(class="navbar-collapse collapse" ng-controller="headerController")
 					ul(class="nav navbar-nav")
-						li(ng-class="home")
+						li(ng-class="{active:isActive('/home')}")
 							a(href="#/home", class="smothscroll")="Home {{ home }}"
-						li(ng-class="admin")
+						li(ng-class="{active:isActive('/admin')}")
 							a(href="#/admin" class="smothscroll")="Admin"
+						li(ng-class="{active: $route.current.activetab == 'home'}")
+							a(href="#/debug" class="smothscroll")="Debug"
 
 		div(id="headerwrap")
 			div(class="container")
