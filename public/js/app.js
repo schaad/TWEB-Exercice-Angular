@@ -6,6 +6,8 @@ var socket = io.connect("127.0.0.1:3000");
 // Encore plus crade d'utiliser des variables globales, mais pour le moment pas de temps à perdre sur les factory
 var callbackDataReceived = null;
 
+// Réception de communication de la part du serveur
+
 socket.on('initVote', function(data, label){
 
 	if(callbackDataReceived !== null){
@@ -32,6 +34,7 @@ tweb.controller('mainController', ['$route', '$routeParams', '$location',
     this.$routeParams = $routeParams;
 }]);
 
+// Controlleur permettant de définir quel onglet est actif
 tweb.controller('headerController', ['$scope', '$location', 
 	function($scope, $location) {
 		$scope.isActive = function(route) {
@@ -86,6 +89,7 @@ tweb.controller('boardController', function($scope){
 	$scope.labels = [];
   	$scope.data = [];
 
+  	// Fonction de callback appelée lors de mise à jour des données. Idée proposée par J. Amacher. 
   	callbackDataReceived = function(data, labels){
 
   		console.log("callback called");
@@ -102,7 +106,8 @@ tweb.controller('boardController', function($scope){
   		$scope.$apply();
   	};
 
-  	// RequestInit est appelé car le serveur ne peut pas initialiser de lui-même dès la connexion du client car callbackDataReceived ne sera pas encore initialisé
+  	// RequestInit est appelé car le serveur ne peut pas envoyer de lui-même initVote dès la connexion du client car callbackDataReceived ne 
+  	// serait pas encore initialisé et aucun chart ne s'afficherait
   	socket.emit('requestInit');
 });
 
@@ -111,7 +116,7 @@ tweb.controller('debugController', function($scope){
 
 	$scope.labels = [];
   	$scope.data = [];
-  	//$scope.series = [];
+  	$scope.dataTab = []; // Utilisé pour les graphiques en bar et en ligne
 
   	callbackDataReceived = function(data, labels){
 
@@ -124,6 +129,8 @@ tweb.controller('debugController', function($scope){
   		}
 
   		console.log($scope.labels);
+
+  		$scope.dataTab = [$scope.data];
 
   		// Permet de dire que la vue a changer et qu'il faut la reconsidérer
   		$scope.$apply();
